@@ -1,0 +1,3 @@
+# django-workshop
+
+goodluck @AurelliaChristie
