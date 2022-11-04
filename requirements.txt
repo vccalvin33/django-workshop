@@ -1,7 +1,2 @@
-asgiref==3.5.2
-certifi @ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
 Django==4.1.2
 django-crispy-forms==1.14.0
-sqlparse==0.4.3
-tzdata==2022.5
-wincertstore==0.2

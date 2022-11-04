@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+<!-- Load crispy forms -->
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+<!-- Navigation Bar -->
+{% include 'app/navbar.html' %}
+
+<div class="container-fluid">
+    <div class="row mt-3 mx-auto">
+        <div class="col">
+            <h2>Edit Task</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy}}
+                <br>
+                <button type="submit" class="btn btn-primary">Update Task</button>
+            </form>
+        </div>
+    </div>
+
+    {% endblock %}
