@@ -1,49 +1,59 @@
 {% extends 'app/base.html' %}
 
-{% block content %}
-  <section class="vh-100">
-      <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-md-9 col-lg-6 col-xl-5">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-              class="img-fluid" alt="Sample image">
-          </div>
-          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
-    
-              <h2 class="fw-bold my-4">Sign Up</h2>
-    
-              <!-- Email input -->
-              <div class="form-outline mb-2">
-                  <label class="form-label" for="form3Example3">Email address</label>
-                  <input type="email" id="form3Example3" class="form-control form-control-lg"
-                  placeholder="Enter a valid email address" />
-              </div>
-    
-              <!-- Password input -->
-              <div class="form-outline mb-2">
-                  <label class="form-label" for="form3Example4">Password</label>
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
-                  placeholder="Enter password" />
-              </div>
+{% load crispy_forms_filters %}
 
-              <!-- Confirm password input -->
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example4">Confirm Password</label>
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
-                  placeholder="Enter password again" />
-              </div>
-    
-              <div class="text-center text-lg-start pt-2">
-                <button type="button" class="btn btn-primary btn-lg"
-                  style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
-                <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="#!"
-                    class="link-danger">Login</a></p>
-              </div>
-    
-            </form>
-          </div>
-        </div>
+{% block content %}
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+          alt="Sample image">
       </div>
-  </section>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form method="POST" action="/signup/">
+          {% csrf_token %}
+          <h2 class="fw-bold my-4">Sign Up</h2>
+
+          <!-- Username input -->
+          <div class="form-outline mb-2">
+            <label class="form-label" for="username-form">Username</label>
+            <input type="text" id="username-form" name="username" class="form-control form-control-lg"
+              placeholder="Enter a username for your account" required />
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-2">
+            <label class="form-label" for="email-form">Email address</label>
+            <input type="email" id="email-form" name="email" class="form-control form-control-lg"
+              placeholder="Enter a valid email address" required />
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-2">
+            <label class="form-label" for="password-form">Password</label>
+            <input type="password" id="password-form" name="password" class="form-control form-control-lg"
+              placeholder="Enter password" required />
+          </div>
+
+          <!-- Confirm password input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="validate-form">Confirm Password</label>
+            <input type="password" id="validate-form" name="password2" class="form-control form-control-lg"
+              placeholder="Enter password again" required />
+          </div>
+
+          <div class="text-center text-lg-start pt-2">
+            <button type="submit" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/login/"
+                class="link-danger">Login</a>
+            </p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

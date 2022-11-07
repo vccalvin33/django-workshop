@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 
 from .forms import TaskForm
@@ -32,6 +32,7 @@ def home(request):
 
     return render(request, 'app/home.html', context)
 
+@login_required(login_url='login')
 def edit(request, task_id):
     task = Task.objects.get(id=task_id)
 
@@ -50,6 +51,7 @@ def edit(request, task_id):
 
     return render(request, 'app/edit.html', context)
 
+@login_required(login_url='login')
 def delete(request, task_id):
     task = Task.objects.get(id=task_id)
 
@@ -60,6 +62,7 @@ def delete(request, task_id):
 
     return render(request, 'app/delete.html')
 
+@login_required(login_url='login')
 def complete(request, task_id):
     task = Task.objects.get(id=task_id)
     task.is_completed = not task.is_completed
@@ -89,3 +92,29 @@ def logout_user(request):
     logout(request)
     messages.success(request, "Logged Out!")
     return redirect('login')
+
+def signup_user(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Username Taken!")
+                return redirect('register')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, "Email Taken!")
+                    return redirect('register')
+                else:
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+                    messages.success(request, "Registered!")
+                    return redirect('login')
+        else:
+            messages.error(request, "Passwords Don't Match!")
+            return redirect('signup')
+    else:
+        return render(request, 'app/signup.html')
