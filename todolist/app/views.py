@@ -103,11 +103,11 @@ def signup_user(request):
         if password == password2:
             if User.objects.filter(username=username).exists():
                 messages.error(request, "Username Taken!")
-                return redirect('register')
+                return redirect('signup')
             else:
                 if User.objects.filter(email=email).exists():
                     messages.error(request, "Email Taken!")
-                    return redirect('register')
+                    return redirect('signup')
                 else:
                     user = User.objects.create_user(username=username, email=email, password=password)
                     user.save()
