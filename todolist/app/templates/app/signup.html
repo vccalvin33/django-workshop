@@ -15,6 +15,23 @@
           {% csrf_token %}
           <h2 class="fw-bold my-4">Sign Up</h2>
 
+          <!-- Error message -->
+          {% if messages %}
+            {% for message in messages %}
+              {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% elif message.tags == "success" %}
+                <div class="alert alert-success alert-dismissible">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
           <!-- Username input -->
           <div class="form-outline mb-2">
             <label class="form-label" for="username-form">Username</label>
