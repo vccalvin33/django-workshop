@@ -13,19 +13,19 @@
     <!-- Error message -->
     {% if messages %}
     {% for message in messages %}
-      {% if message.tags == "error" %}
-        <div class="alert alert-danger alert-dismissible">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% elif message.tags == "success" %}
-        <div class="alert alert-success alert-dismissible">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% endif %}
+    {% if message.tags == "error" %}
+    <div class="alert alert-danger alert-dismissible">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% elif message.tags == "success" %}
+    <div class="alert alert-success alert-dismissible">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
     {% endfor %}
-  {% endif %}
+    {% endif %}
   </div>
   <div class="row mt-2 mx-auto">
     <div class="col-4">
@@ -60,9 +60,9 @@
             </td>
             <td class="text-center">{{ task.deadline }}</td>
             <td>
-              <a href="{% url 'edit-task' task.id %}" class="btn btn-sm btn-primary">Edit</a>
-              <a href="{% url 'complete-task' task.id %}" class="btn btn-sm btn-warning">Complete</a>
-              <a href="{% url 'delete-task' task.id %}" class="btn btn-sm btn-danger">Delete</a>
+              <a href="{% url 'edit-task' task.id %}" class="btn btn-sm btn-primary mb-1">Edit</a>
+              <a href="{% url 'complete-task' task.id %}" class="btn btn-sm btn-warning mb-1">Complete</a>
+              <a href="{% url 'delete-task' task.id %}" class="btn btn-sm btn-danger mb-1">Delete</a>
             </td>
           </tr>
           {% else %}

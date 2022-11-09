@@ -52,7 +52,6 @@ def login_user(request):
     return render(request, 'app/login.html')
 
 def logout_user(request):
-    print('function is called')
     logout(request)
     messages.success(request, "Logged Out!")
     return redirect('login')
