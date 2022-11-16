@@ -37,7 +37,7 @@ Make sure you already have the following tools installed in your device if you w
   python manage.py runserver
   ```
 
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) with your browser to see the result.
 
 - You can start editing the page by modifying `app/views.py` or the other files. Reload the page to see if your edits have been reflected on the page.
 
